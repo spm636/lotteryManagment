@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Draw Ticket</title>
+    <link rel="stylesheet" href="/home.css">
+    <style>
+
+    </style>
+
+</head>
+<body>
+<div th:fragment="nav-bar">
+<header id="header">
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top" style="background: #9A616D">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <span sec:authentication="principal.username"></span>
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav mr-auto" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="" ></a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+
+            <a class="nav-link" href="">
+                <form action="#" th:action="@{/logout}" method="post">
+
+                    <button class="btn " type="submit" style="background: #9A616D;color: white">
+                        logout<i class="bi bi-box-arrow-left m-2"></i></button>
+                </form>
+            </a>
+
+        </div>
+    </nav>
+</header>
+</div>
+<div th:fragment="side-bar">
+<div class="sidebar">
+    <button id="toggleButton"><i class="bi bi-caret-left-square-fill"></i></button>
+    <!-- Sidebar content goes here -->
+    <ul>
+        <li><a th:href="@{/}"><i class="bi bi-house-door-fill"></i><span class="m-2">Dashboard</span></a></li>
+        <li><a th:href="@{/drawPort}"><i class="bi bi-archive-fill"></i><span class="m-2">Draw port</span></a></li>
+
+        <li><a th:href="@{/report}"><i class="bi bi-archive-fill"></i><span class="m-2">Report</span></a></li>
+        <li><a th:href="@{/resultDowload}"><i class="bi bi-archive-fill"></i><span class="m-2">Result Dowload</span></a></li>
+        <li><a th:href="@{/ShowResult}"><i class="bi bi-archive-fill"></i><span class="m-2">Show Result</span></a></li>
+
+        <li><a th:href="@{/editPrize}"><i class="bi bi-archive-fill"></i><span class="m-2">Edit Prize coupon</span></a></li>
+
+        <li><a th:href="@{/changePassword}"><i class="bi bi-file-lock-fill"></i><span class="m-2">Change Password</span></a></li>
+    </ul>
+</div>
+</div>
+<script src="/home.js"></script>
+</body>
+</html>

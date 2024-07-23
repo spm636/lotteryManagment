@@ -1,0 +1,281 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Draw Ticket</title>
+    <style>
+        body
+        {
+            background-color: #F87171;
+            background-color: hsl(0, 50%, 80%);/* Replace this with your specific shade of red */
+
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <nav class="navbar navbar-expand-sm navbar-dark  " style="background: #9A616D">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="">
+                <span sec:authentication="principal.username"></span>
+
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mynavbar">
+                <ul class="navbar-nav mr-auto" >
+                    <li class="nav-item">
+                        <a class="nav-link" href="" th:href="@{/}" style="color: white">Home</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="collapse navbar-collapse" >
+                <ul class="navbar-nav mr-auto" >
+<!--                    <li class="nav-item">-->
+<!--                        <a class="nav-link" href="" th:href="@{/ticket}" style="color: white">Coupen Add</a>-->
+<!--                    </li>-->
+                    <li class="nav-item">
+                        <a class="nav-link" href=""  style="color: white;text-decoration: underline">Draw Port</a>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <a class="nav-link" href="">
+                <form action="#" th:action="@{/logout}" method="post">
+
+                    <button class="btn " type="submit" style="background: #9A616D;color: white">
+                        logout<i class="bi bi-box-arrow-left m-2"></i></button>
+                </form>
+            </a>
+
+        </div>
+    </nav>
+</header>
+
+<div class="container">
+
+    <h3 class="mt-3">Draw Ticket</h3>
+    <hr>
+
+
+    <form th:action="@{/drawTicket}" th:object="${draw}" method="post">
+        <div class="row">
+            <div class="col-md-4">
+                <textarea th:field="*{result}" placeholder="Enter Result" id="inputItem" class="form-control mb-3" rows="6" required ></textarea>
+            </div>
+            <div class="col-md-4">
+                <div class="mb-4">
+                    <input class="form-control" name="date" th:value="${formattedDate}" type="date"/>
+                </div>
+
+                <select th:field="*{ticket}" class="form-select mb-3" required>
+                    <option th:value="null"> select type </option>
+                    <option th:each="tickets :${ticket}"
+                            th:value="${tickets.id}"
+                            th:text="${tickets.ticket}"
+                    ></option>
+                </select>
+
+
+
+                <input type="submit" value="Result"  class="btn btn-primary"/>
+            </div>
+        </div>
+    </form>
+
+<div class="row">
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5 ">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">First Prize</h5>
+            <hr>
+            <table class="table">
+
+
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res1}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5 ">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">Second Prize</h5>
+            <hr>
+            <table class="table">
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res2}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">Third Prize</h5>
+            <hr>
+            <table class="table">
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res3}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5 ">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">Fourth Prize</h5>
+            <hr>
+            <table class="table">
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res4}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">Fifth Prize</h5>
+            <hr>
+            <table class="table">
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res5}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-4 d-flex justify-content-center align-items-start mb-5 ">
+        <div class="bg-light"  >
+            <h5 class="d-flex justify-content-center mt-2">complimentary Prize</h5>
+            <hr>
+            <table class="table">
+
+                <tbody>
+                <tr>
+                    <th>Coupen No.</th>
+                    <th>Count</th>
+                    <th>type</th>
+                    <th>amount</th>
+                </tr>
+
+                <tr th:each="res: ${res6}">
+                    <td th:text="${res.ticketDetails.coupenNumber}"> </td>
+                    <td th:text="${res.ticketDetails.count}"></td>
+                    <td th:text="${res.ticketDetails.type}"></td>
+                    <td th:text="${res.totelPrice}"></td>
+
+                </tr>
+
+
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
+
+
+

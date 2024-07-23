@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <title>Draw Ticket</title>
+    <link rel="stylesheet" href="/home.css">
+    <style>
+
+    </style>
+</head>
+
+<body>
+
+
+
+
+
+
+<div th:replace="~{fragment::nav-bar}"></div>
+
+<div th:replace="~{fragment::side-bar}"></div>
+<div class="content">
+
+    <div class="container-fluid m-3">
+       <div class="row">
+        <div  class="col-md-6">
+            <h3>Edit Prize Amount</h3>
+            <hr>
+            <form th:action="@{/editPrizeMoney}" th:object="${prize}">
+            <table class="table">
+                <input type="hidden" th:field="*{id}">
+
+                <tr>
+                    <td>First Prize</td>
+                    <td><input type="text" th:field="*{firsst}" /></td>
+                </tr>
+
+                <tr>
+                    <td>Second Priza</td>
+                    <td><input type="text" th:field="*{second}"/></td>
+                </tr>
+
+                <tr>
+                    <td>Third Prize</td>
+                    <td><input type="text" th:field="*{third}"/></td>
+                </tr>
+
+                <tr>
+                    <td>Fourth Prize</td>
+                    <td><input type="text" th:field="*{fourth}"/></td>
+                </tr>
+
+                <tr>
+                    <td>Fifth Prize</td>
+                    <td><input type="text" th:field="*{fifth}"/></td>
+                </tr>
+
+                <tr>
+                    <td>Complimentary</td>
+                    <td><input type="text" th:field="*{complimentary}"/></td>
+                </tr>
+                <tr>
+                    <td>Block Prize</td>
+                    <td><input type="text" th:field="*{blockPrize}"/></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="Save Changes" class="btn btn-primary"/>
+                    </td>
+                </tr>
+            </table>
+            </form>
+        </div>
+            <div  class="col-md-6">
+            <h3>Edit Coupon Rate</h3>
+                <hr>
+            <form th:action="@{/editCoupenPrize}" th:object="${coupen}">
+                <table class="table">
+                    <input type="hidden" th:field="*{id}">
+                    <tr>
+                        <td>Super</td>
+                        <td><input type="text" th:field="*{super1}"></td>
+                    </tr>
+                    <tr>
+                        <td>Box</td>
+                        <td><input type="text" th:field="*{box}"></td>
+                    </tr>
+                    <tr>
+                        <td>Block</td>
+                        <td><input type="text" th:field="*{block}"></td>
+                    </tr>
+
+
+                <tr><td>
+                    <input type="submit" value="Save Changes" class="btn btn-primary">
+                </td></tr>
+                </table>
+            </form>
+
+        </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+<script src="/home.js"></script>
+
+</body>
+</html>
